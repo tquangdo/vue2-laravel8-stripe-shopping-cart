@@ -24,6 +24,11 @@ OR
 - `>>> App\Models\Product::with('categories')->get();`
 - `php artisan make:controller Api/Product<User>Controller`
 
+## Stripe
+
+https://laravel.com/docs/8.x/billing
+- `composer require laravel/cashier`
+
 ## connect DB
 
 ![demo](screenshot/demo.png)
