@@ -13,10 +13,6 @@
 - `[app] $ composer install`
 - `[app] $ cp .env.example .env`
 - `[app] $ php artisan key:generate`
-- browser: access "localhost:10080"
-- `[app] $ php artisan migrate`
-
-![demo](demo.png)
 
 ## connect DB
 
