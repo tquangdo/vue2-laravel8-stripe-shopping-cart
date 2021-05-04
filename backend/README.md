@@ -13,6 +13,8 @@
 
 - `php artisan make:model Product<Category><Order> -m`
 - `php artisan make:migration create_order<category>_product_table --table=order<category>_product`
+![category_product](screenshot/category_product.png)
+![order_product](screenshot/order_product.png)
 - `php artisan tinker`
 - `>>> $user = App\Models\User::factory()->make();`
 - `php artisan make:factory Product<Category>Factory --model=Product<Category>`
@@ -31,4 +33,4 @@ https://laravel.com/docs/8.x/billing
 
 ## connect DB
 
-![demo](screenshot/demo.png)
+![DB](screenshot/DB.png)
