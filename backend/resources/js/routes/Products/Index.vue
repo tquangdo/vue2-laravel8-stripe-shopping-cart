@@ -43,9 +43,9 @@
           <div class="mt-4">
             <h3
               class="text-gray-500 text-xs tracking-widest title-font mb-1 uppercase inline-block mr-2"
-              v-for="item_category in item_product.categories"
+              v-for="(item_category, index) in item_product.categories"
               v-text="item_category.name"
-              :key="item_category.id"
+              :key="index"
             ></h3>
             <h2
               class="text-gray-900 title-font text-lg font-medium"
@@ -63,9 +63,9 @@ export default {
   methods: {
     onFormatCurrency(amount) {
       amount = amount / 100;
-      return amount.toLocaleString("en-US", {
+      return amount.toLocaleString(process.env.MIX_CASHIER_CURRENCY_LOCALE, {
         style: "currency",
-        currency: "USD",
+        currency: process.env.MIX_CASHIER_CURRENCY,
       });
     },
   },

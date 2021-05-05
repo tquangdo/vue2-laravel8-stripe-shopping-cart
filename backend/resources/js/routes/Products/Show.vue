@@ -41,9 +41,9 @@ export default {
   methods: {
     onFormatCurrency(amount) {
       amount = amount / 100;
-      return amount.toLocaleString("en-US", {
+      return amount.toLocaleString(process.env.MIX_CASHIER_CURRENCY_LOCALE, {
         style: "currency",
-        currency: "USD",
+        currency: process.env.MIX_CASHIER_CURRENCY,
       });
     },
   },

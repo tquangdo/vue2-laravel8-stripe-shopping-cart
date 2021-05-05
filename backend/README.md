@@ -17,9 +17,10 @@
 ![order_product](screenshot/order_product.png)
 - `php artisan tinker`
 - `>>> $user = App\Models\User::factory()->make();`
-- `php artisan make:factory Product<Category>Factory --model=Product<Category>`
+- `php artisan make:factory Product<Category><Order>Factory --model=Product<Category><Order>`
 - `php artisan migrate`
-- `php artisan db:seed`
+- `php artisan make:seeder User<Product>Seeder`
+- `php artisan db:seed --class=DatabaseSeeder`
 - `php artisan tinker`
 - `>>> App\Models\Product::all();`
 OR

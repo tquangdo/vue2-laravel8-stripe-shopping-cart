@@ -19,6 +19,12 @@
             >
               Price
             </th>
+
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+            >
+              Subtotal Price
+            </th>
             <th
               class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
             >
@@ -30,6 +36,7 @@
           <tr v-for="(item, index) in comp_cart" :key="item.id">
             <td class="p-4" v-text="item.name"></td>
             <td class="p-4" v-text="item.quantity"></td>
+            <td class="p-4" v-text="onCartLineTotal(item, false)"></td>
             <td class="p-4" v-text="onCartLineTotal(item)"></td>
             <td class="w-10 text-right">
               <button
@@ -43,6 +50,7 @@
           <tr>
             <td class="p-4 font-bold">Total Amount</td>
             <td class="p-4 font-bold" v-text="comp_cartQuantity"></td>
+            <td class="p-4 font-bold"></td>
             <td class="p-4 font-bold" v-text="comp_cartTotal"></td>
             <td class="w-10 text-right"></td>
           </tr>
@@ -212,12 +220,12 @@ export default {
     this.v_cardElement.mount("#card-element");
   },
   methods: {
-    onCartLineTotal(item) {
-      let amount = item.price * item.quantity;
+    onCartLineTotal(item, is_sub = true) {
+      let amount = is_sub ? item.price * item.quantity : item.price;
       amount = amount / 100;
-      return amount.toLocaleString("en-US", {
+      return amount.toLocaleString(process.env.MIX_CASHIER_CURRENCY_LOCALE, {
         style: "currency",
-        currency: "USD",
+        currency: process.env.MIX_CASHIER_CURRENCY,
       });
     },
     async onProcessPayment() {
@@ -242,7 +250,6 @@ export default {
         this.v_paymentProcessing = false;
         alert("payment by Stripe ERR!!! " + error);
       } else {
-        console.log(paymentMethod);
         this.v_customer.payment_method_id = paymentMethod.id;
         this.v_customer.amount = this.comp_cart.reduce(
           (acc, item) => acc + item.price * item.quantity,
@@ -253,7 +260,6 @@ export default {
           .post("/api/purchase", this.v_customer)
           .then((response) => {
             this.v_paymentProcessing = false;
-            console.log(response);
             this.$store.commit("updateOrder", response.data);
             this.$store.dispatch("clearCart");
             this.$router.push({ name: "order.summary" }); // routes.js: name: 'order.summary',
@@ -281,9 +287,9 @@ export default {
         0
       );
       amount = amount / 100;
-      return amount.toLocaleString("en-US", {
+      return amount.toLocaleString(process.env.MIX_CASHIER_CURRENCY_LOCALE, {
         style: "currency",
-        currency: "USD",
+        currency: process.env.MIX_CASHIER_CURRENCY,
       });
     },
   },
