@@ -31,6 +31,8 @@ OR
 https://laravel.com/docs/8.x/billing
 - `composer require laravel/cashier`
 
+- `backend$ npm i @stripe/stripe-js`
+
 ## connect DB
 
 ![DB](screenshot/DB.png)

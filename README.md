@@ -9,10 +9,10 @@
 ## localdeploy
 
 - `docker-compose up -d --build`
-- `docker-compose exec app bash`
-- `[app] $ composer install`
-- `[app] $ cp .env.example .env`
-- `[app] $ php artisan key:generate`
+- `docker-compose exec php bash`
+- `[php] $ composer install`
+- `[php] $ cp .env.example .env`
+- `[php] $ php artisan key:generate`
 
 ## connect DB
 
@@ -34,12 +34,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 ```
-- `docker-compose logs -f app`
+- `docker-compose logs -f php`
 - browser: access "localhost:10080" => will see 'welcome route.' in log console
 
 ## check versions
 
-1. PHP: `[app] # php -v`
->(PHP info: `[app] # php -m`)
-2. composer: `[app] # composer -v`
-3. laravel: `[app] $ php artisan -v`
+1. PHP: `[php] # php -v`
+>(PHP info: `[php] # php -m`)
+2. composer: `[php] # composer -v`
+3. laravel: `[php] $ php artisan -v`

@@ -54,7 +54,7 @@
         <div class="p-2 w-1/3">
           <div class="relative">
             <label for="first_name" class="leading-7 text-sm text-gray-600"
-              >First Name</label
+              >First Name<span style="color: red">(*)</span></label
             >
             <input
               type="text"
@@ -69,7 +69,7 @@
         <div class="p-2 w-1/3">
           <div class="relative">
             <label for="last_name" class="leading-7 text-sm text-gray-600"
-              >Last Name</label
+              >Last Name<span style="color: red">(*)</span></label
             >
             <input
               type="text"
@@ -84,7 +84,7 @@
         <div class="p-2 w-1/3">
           <div class="relative">
             <label for="email" class="leading-7 text-sm text-gray-600"
-              >Email Address</label
+              >Email Address<span style="color: red">(*)</span></label
             >
             <input
               type="email"
@@ -101,7 +101,7 @@
         <div class="p-2 w-1/3">
           <div class="relative">
             <label for="address" class="leading-7 text-sm text-gray-600"
-              >Street Address</label
+              >Street Address<span style="color: red">(*)</span></label
             >
             <input
               type="text"
@@ -116,7 +116,7 @@
         <div class="p-2 w-1/3">
           <div class="relative">
             <label for="city" class="leading-7 text-sm text-gray-600"
-              >City</label
+              >City<span style="color: red">(*)</span></label
             >
             <input
               type="text"
@@ -131,7 +131,7 @@
         <div class="p-2 w-1/6">
           <div class="relative">
             <label for="state" class="leading-7 text-sm text-gray-600"
-              >State</label
+              >State<span style="color: red">(*)</span></label
             >
             <input
               type="email"
@@ -146,7 +146,7 @@
         <div class="p-2 w-1/6">
           <div class="relative">
             <label for="zip_code" class="leading-7 text-sm text-gray-600"
-              >Zip Code</label
+              >Zip Code<span style="color: red">(*)</span></label
             >
             <input
               type="email"
@@ -163,7 +163,7 @@
         <div class="p-2 w-full">
           <div class="relative">
             <label for="card-element" class="leading-7 text-sm text-gray-600"
-              >Credit Card Info</label
+              >Credit Card Info<span style="color: red">(*)</span></label
             >
             <div id="card-element"></div>
           </div>
@@ -181,7 +181,7 @@
   </div>
 </template>
 <script>
-// import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 export default {
   data() {
     return {
@@ -200,14 +200,16 @@ export default {
     };
   },
   async mounted() {
-    // this.v_stripe = await loadStripe(process.env.MIX_STRIPE_KEY);
-    // const elements = this.v_stripe.elements();
-    // this.v_cardElement = elements.create('card', {
-    //     classes: {
-    //         base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'
-    //     }
-    // });
-    // this.v_cardElement.mount('#card-element');
+    this.v_stripe = await loadStripe(process.env.MIX_STRIPE_KEY);
+    const elements = this.v_stripe.elements();
+    // Valid Elements are: card, cardNumber, cardExpiry, cardCvc, postalCode, paymentRequestButton, iban, idealBank, p24Bank, auBankAccount, fpxBank, afterpayClearpayMessage
+    this.v_cardElement = elements.create("card", {
+      classes: {
+        base:
+          "bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out",
+      },
+    });
+    this.v_cardElement.mount("#card-element");
   },
   methods: {
     onCartLineTotal(item) {
@@ -238,15 +240,15 @@ export default {
       );
       if (error) {
         this.v_paymentProcessing = false;
-        console.error(error);
+        alert("payment by Stripe ERR!!! " + error);
       } else {
         console.log(paymentMethod);
         this.v_customer.payment_method_id = paymentMethod.id;
-        this.v_customer.amount = this.$store.state.state_cart.reduce(
+        this.v_customer.amount = this.comp_cart.reduce(
           (acc, item) => acc + item.price * item.quantity,
           0
         );
-        this.v_customer.cart = JSON.stringify(this.$store.state.state_cart);
+        this.v_customer.cart = JSON.stringify(this.comp_cart);
         axios
           .post("/api/purchase", this.v_customer)
           .then((response) => {
@@ -254,11 +256,11 @@ export default {
             console.log(response);
             this.$store.commit("updateOrder", response.data);
             this.$store.dispatch("clearCart");
-            this.$router.push({ name: "order.summary" }); // routes.js: name: 'products.show',
+            this.$router.push({ name: "order.summary" }); // routes.js: name: 'order.summary',
           })
           .catch((error) => {
             this.v_paymentProcessing = false;
-            console.error(error);
+            alert("payment by Stripe ERR!!! " + error);
           });
       }
     },

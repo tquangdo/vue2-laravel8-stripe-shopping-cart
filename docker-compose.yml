@@ -50,6 +50,7 @@ services:
     environment:
       - NGINX_ENTRYPOINT_QUIET_LOGS=1
     links:
+      # infra/nginx/default.conf: fastcgi_pass app:9000;
       - php:app
     ports:
       - 10080:80

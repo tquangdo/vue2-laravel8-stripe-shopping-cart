@@ -11,6 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _stripe_stripe_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @stripe/stripe-js */ "./node_modules/@stripe/stripe-js/dist/stripe.esm.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -199,7 +200,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-// import { loadStripe } from '@stripe/stripe-js';
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -217,20 +218,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       v_paymentProcessing: false
     };
   },
-  mounted: function mounted() {// this.v_stripe = await loadStripe(process.env.MIX_STRIPE_KEY);
-    // const elements = this.v_stripe.elements();
-    // this.v_cardElement = elements.create('card', {
-    //     classes: {
-    //         base: 'bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out'
-    //     }
-    // });
-    // this.v_cardElement.mount('#card-element');
+  mounted: function mounted() {
+    var _this = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var elements;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _context.next = 2;
+              return Object(_stripe_stripe_js__WEBPACK_IMPORTED_MODULE_1__["loadStripe"])("pk_test_51InfEBFkNYXJggYn0vPhnZULThfp8G4nk6etS4aWUFhaBYFC25ypL8SnnS7nXpdbuLTv20FVnxIJgCkVUKPxvUpU00j2CIikGv");
+
+            case 2:
+              _this.v_stripe = _context.sent;
+              elements = _this.v_stripe.elements(); // Valid Elements are: card, cardNumber, cardExpiry, cardCvc, postalCode, paymentRequestButton, iban, idealBank, p24Bank, auBankAccount, fpxBank, afterpayClearpayMessage
+
+              _this.v_cardElement = elements.create("card", {
+                classes: {
+                  base: "bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out"
+                }
+              });
+
+              _this.v_cardElement.mount("#card-element");
+
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -248,60 +260,60 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     onProcessPayment: function onProcessPayment() {
-      var _this = this;
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var _yield$_this$v_stripe, paymentMethod, error;
+        var _yield$_this2$v_strip, paymentMethod, error;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _this.v_paymentProcessing = true;
+                _this2.v_paymentProcessing = true;
                 _context2.next = 3;
-                return _this.v_stripe.createPaymentMethod("card", _this.v_cardElement, {
+                return _this2.v_stripe.createPaymentMethod("card", _this2.v_cardElement, {
                   billing_details: {
-                    name: _this.v_customer.first_name + " " + _this.v_customer.last_name,
-                    email: _this.v_customer.email,
+                    name: _this2.v_customer.first_name + " " + _this2.v_customer.last_name,
+                    email: _this2.v_customer.email,
                     address: {
-                      line1: _this.v_customer.address,
-                      city: _this.v_customer.city,
-                      state: _this.v_customer.state,
-                      postal_code: _this.v_customer.zip_code
+                      line1: _this2.v_customer.address,
+                      city: _this2.v_customer.city,
+                      state: _this2.v_customer.state,
+                      postal_code: _this2.v_customer.zip_code
                     }
                   }
                 });
 
               case 3:
-                _yield$_this$v_stripe = _context2.sent;
-                paymentMethod = _yield$_this$v_stripe.paymentMethod;
-                error = _yield$_this$v_stripe.error;
+                _yield$_this2$v_strip = _context2.sent;
+                paymentMethod = _yield$_this2$v_strip.paymentMethod;
+                error = _yield$_this2$v_strip.error;
 
                 if (error) {
-                  _this.v_paymentProcessing = false;
-                  console.error(error);
+                  _this2.v_paymentProcessing = false;
+                  alert("payment by Stripe ERR!!! " + error);
                 } else {
                   console.log(paymentMethod);
-                  _this.v_customer.payment_method_id = paymentMethod.id;
-                  _this.v_customer.amount = _this.$store.state.state_cart.reduce(function (acc, item) {
+                  _this2.v_customer.payment_method_id = paymentMethod.id;
+                  _this2.v_customer.amount = _this2.comp_cart.reduce(function (acc, item) {
                     return acc + item.price * item.quantity;
                   }, 0);
-                  _this.v_customer.cart = JSON.stringify(_this.$store.state.state_cart);
-                  axios.post("/api/purchase", _this.v_customer).then(function (response) {
-                    _this.v_paymentProcessing = false;
+                  _this2.v_customer.cart = JSON.stringify(_this2.comp_cart);
+                  axios.post("/api/purchase", _this2.v_customer).then(function (response) {
+                    _this2.v_paymentProcessing = false;
                     console.log(response);
 
-                    _this.$store.commit("updateOrder", response.data);
+                    _this2.$store.commit("updateOrder", response.data);
 
-                    _this.$store.dispatch("clearCart");
+                    _this2.$store.dispatch("clearCart");
 
-                    _this.$router.push({
+                    _this2.$router.push({
                       name: "order.summary"
-                    }); // routes.js: name: 'products.show',
+                    }); // routes.js: name: 'order.summary',
 
                   })["catch"](function (error) {
-                    _this.v_paymentProcessing = false;
-                    console.error(error);
+                    _this2.v_paymentProcessing = false;
+                    alert("payment by Stripe ERR!!! " + error);
                   });
                 }
 
@@ -427,14 +439,7 @@ var render = function() {
       _c("div", { staticClass: "flex flex-wrap -mx-2 mt-8" }, [
         _c("div", { staticClass: "p-2 w-1/3" }, [
           _c("div", { staticClass: "relative" }, [
-            _c(
-              "label",
-              {
-                staticClass: "leading-7 text-sm text-gray-600",
-                attrs: { for: "first_name" }
-              },
-              [_vm._v("First Name")]
-            ),
+            _vm._m(1),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -468,14 +473,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "p-2 w-1/3" }, [
           _c("div", { staticClass: "relative" }, [
-            _c(
-              "label",
-              {
-                staticClass: "leading-7 text-sm text-gray-600",
-                attrs: { for: "last_name" }
-              },
-              [_vm._v("Last Name")]
-            ),
+            _vm._m(2),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -509,14 +507,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "p-2 w-1/3" }, [
           _c("div", { staticClass: "relative" }, [
-            _c(
-              "label",
-              {
-                staticClass: "leading-7 text-sm text-gray-600",
-                attrs: { for: "email" }
-              },
-              [_vm._v("Email Address")]
-            ),
+            _vm._m(3),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -552,14 +543,7 @@ var render = function() {
       _c("div", { staticClass: "flex flex-wrap -mx-2 mt-4" }, [
         _c("div", { staticClass: "p-2 w-1/3" }, [
           _c("div", { staticClass: "relative" }, [
-            _c(
-              "label",
-              {
-                staticClass: "leading-7 text-sm text-gray-600",
-                attrs: { for: "address" }
-              },
-              [_vm._v("Street Address")]
-            ),
+            _vm._m(4),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -593,14 +577,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "p-2 w-1/3" }, [
           _c("div", { staticClass: "relative" }, [
-            _c(
-              "label",
-              {
-                staticClass: "leading-7 text-sm text-gray-600",
-                attrs: { for: "city" }
-              },
-              [_vm._v("City")]
-            ),
+            _vm._m(5),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -634,14 +611,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "p-2 w-1/6" }, [
           _c("div", { staticClass: "relative" }, [
-            _c(
-              "label",
-              {
-                staticClass: "leading-7 text-sm text-gray-600",
-                attrs: { for: "state" }
-              },
-              [_vm._v("State")]
-            ),
+            _vm._m(6),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -675,14 +645,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "p-2 w-1/6" }, [
           _c("div", { staticClass: "relative" }, [
-            _c(
-              "label",
-              {
-                staticClass: "leading-7 text-sm text-gray-600",
-                attrs: { for: "zip_code" }
-              },
-              [_vm._v("Zip Code")]
-            ),
+            _vm._m(7),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -715,7 +678,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(8),
       _vm._v(" "),
       _c("div", { staticClass: "p-2 w-full" }, [
         _c("button", {
@@ -782,6 +745,118 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "leading-7 text-sm text-gray-600",
+        attrs: { for: "first_name" }
+      },
+      [
+        _vm._v("First Name"),
+        _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "leading-7 text-sm text-gray-600",
+        attrs: { for: "last_name" }
+      },
+      [
+        _vm._v("Last Name"),
+        _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "leading-7 text-sm text-gray-600",
+        attrs: { for: "email" }
+      },
+      [
+        _vm._v("Email Address"),
+        _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "leading-7 text-sm text-gray-600",
+        attrs: { for: "address" }
+      },
+      [
+        _vm._v("Street Address"),
+        _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "leading-7 text-sm text-gray-600",
+        attrs: { for: "city" }
+      },
+      [
+        _vm._v("City"),
+        _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "leading-7 text-sm text-gray-600",
+        attrs: { for: "state" }
+      },
+      [
+        _vm._v("State"),
+        _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        staticClass: "leading-7 text-sm text-gray-600",
+        attrs: { for: "zip_code" }
+      },
+      [
+        _vm._v("Zip Code"),
+        _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex flex-wrap -mx-2 mt-4" }, [
       _c("div", { staticClass: "p-2 w-full" }, [
         _c("div", { staticClass: "relative" }, [
@@ -791,7 +866,10 @@ var staticRenderFns = [
               staticClass: "leading-7 text-sm text-gray-600",
               attrs: { for: "card-element" }
             },
-            [_vm._v("Credit Card Info")]
+            [
+              _vm._v("Credit Card Info"),
+              _c("span", { staticStyle: { color: "red" } }, [_vm._v("(*)")])
+            ]
           ),
           _vm._v(" "),
           _c("div", { attrs: { id: "card-element" } })
