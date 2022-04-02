@@ -61,7 +61,7 @@
     1. #### factory
         - `php artisan make:factory Product<Category><Order>Factory --model=Product<Category><Order> -m`
         - => create `database/factories/Product<Category><Order>Factory.php`
-        - `php artisan migrate`
+        - copy paste content into `*Factory.php`
     1. #### seeder
         - `php artisan make:seeder User<Product>Seeder`
         - copy paste content into `backend/database/seeders/DatabaseSeeder.php` (include `User<Product>Seeder`)
@@ -78,8 +78,8 @@
         created_at: 2022-04-02 15:02:09
         updated_at: 2022-04-02 15:02:09
         ...
-        - B/ check by tinker:
         ```
+        - B/ check by tinker:
         - `php artisan tinker`
         - `>>> App\Models\Product::all();`
         OR
@@ -91,67 +91,67 @@
 1. ### test API
     - `php artisan server`
     1. #### GET
-    - access `localhost:8000/api/products` on browser => will see JSON
+        - access `localhost:8000/api/products` on browser => will see JSON
     1. #### POST
-    - click "Pay Now" (stripe) in `backend/app/Http/Controllers/Api/UserController.php > routeApiPurchase()` => NO need to take time to test API!!!
+        - click "Pay Now" (stripe) in `backend/app/Http/Controllers/Api/UserController.php > routeApiPurchase()` => NO need to take time to test API!!!
 
 ## connect DB
-    ![DB](screenshot/DB.png)
-    1. #### in CLI
-        - `docker-compose exec db bash -c 'mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'`
-        ```shell
-        mysql> show tables;
-        =>
-        +-------------------------+
-        | Tables_in_laravel_local |
-        +-------------------------+
-        | categories              |
-        | category_product        |
-        | failed_jobs             |
-        | migrations              |
-        | order_product           |
-        | orders                  |
-        | password_resets         |
-        | personal_access_tokens  |
-        | products                |
-        | users                   |
-        +-------------------------+
-        10 rows in set (0.00 sec)
-        ```
-    1. #### by tools (MySQL Workbench)
-        - username: `root`
-        - pw: `secret`
-        - port: `33060`
-    1. #### by tinker:
-        ```shell
-        php artisan tinker
-        >>> config('database')
-        => [
-            "default" => "mysql",
-            "connections" => [
-            "sqlite" => [
-                "driver" => "sqlite",
-                "url" => null,
-                "database" => "laravel_local",
-                "prefix" => "",
-                "foreign_key_constraints" => true,
-            ],
-            "mysql" => [
-                "driver" => "mysql",
-                "url" => null,
-                "host" => "127.0.0.1",
-                "port" => "3306",
-                "database" => "laravel_local",
-                "username" => "root",
-                "password" => "secret",
-                "unix_socket" => "",
-                "charset" => "utf8mb4",
-                "collation" => "utf8mb4_unicode_ci",
-                "prefix" => "",
-                "prefix_indexes" => true,
-                "strict" => true,
-                "engine" => null,
-                "options" => [],
-            ],
-            "pgsql" => [...]
-        ```
+![DB](screenshot/DB.png)
+1. ### in CLI
+    - `docker-compose exec db bash -c 'mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'`
+    ```shell
+    mysql> show tables;
+    =>
+    +-------------------------+
+    | Tables_in_laravel_local |
+    +-------------------------+
+    | categories              |
+    | category_product        |
+    | failed_jobs             |
+    | migrations              |
+    | order_product           |
+    | orders                  |
+    | password_resets         |
+    | personal_access_tokens  |
+    | products                |
+    | users                   |
+    +-------------------------+
+    10 rows in set (0.00 sec)
+    ```
+1. ### by tools (MySQL Workbench)
+    - username: `root`
+    - pw: `secret`
+    - port: `33060`
+1. ### by tinker:
+    ```shell
+    php artisan tinker
+    >>> config('database')
+    => [
+        "default" => "mysql",
+        "connections" => [
+        "sqlite" => [
+            "driver" => "sqlite",
+            "url" => null,
+            "database" => "laravel_local",
+            "prefix" => "",
+            "foreign_key_constraints" => true,
+        ],
+        "mysql" => [
+            "driver" => "mysql",
+            "url" => null,
+            "host" => "127.0.0.1",
+            "port" => "3306",
+            "database" => "laravel_local",
+            "username" => "root",
+            "password" => "secret",
+            "unix_socket" => "",
+            "charset" => "utf8mb4",
+            "collation" => "utf8mb4_unicode_ci",
+            "prefix" => "",
+            "prefix_indexes" => true,
+            "strict" => true,
+            "engine" => null,
+            "options" => [],
+        ],
+        "pgsql" => [...]
+    ```
