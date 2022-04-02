@@ -24,9 +24,9 @@
     - `npm run watch`
     - access on browser: `http://localhost:10080`
     ![demo](screenshot/demo.png)
-    > note: In case create new proj
-    > `backend$ npm i vue vuex vue-router tailwindcss @stripe/stripe-js`
-    > if ERR with `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
+    > - note: In case create new proj
+    > - `backend$ npm i vue vuex vue-router tailwindcss @stripe/stripe-js`
+    > - if ERR with `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
 
 ## localdeploy (create new proj)
 1. ### MVC
