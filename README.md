@@ -32,6 +32,9 @@
 
 ## localdeploy (create new proj)
 1. ### BE MVC
+    1. #### .env
+        - `docker run --name cont-mysql -e MYSQL_DATABASE=laravel_local -e MYSQL_ROOT_PASSWORD=secret -p 3306:3306 -d mysql`
+        - fill `STRIPE_KEY` & `STRIPE_SECRET` & `MIX_CASHIER_CURRENCY(_LOCALE)` & `DB_xxx`(`DB_HOST=127.0.0.1`) in `.env`
     1. #### model
         - `php artisan make:model Product<Category><Order> -m`
         - => create products<categories><orders> table
@@ -94,7 +97,6 @@
     1. #### routes
         - copy paste content into `backend/routes/api.php & web.php`
 1. ### test API
-    - fill `STRIPE_KEY` & `STRIPE_SECRET` & `MIX_CASHIER_CURRENCY(_LOCALE)` in `.env`
     - `php artisan serve`
     1. #### GET
         - access `localhost:8000/api/products` on browser => will see JSON
