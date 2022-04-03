@@ -104,10 +104,11 @@
     > ⚠️⚠️⚠️ IMPORTANT ⚠️⚠️⚠️!!!
     > - laravel-mix ver 5: repo
     > - laravel-mix ver 6: `mix.js('resources/js/app.js', 'public/js')` -> `mix.js('resources/js/app.js', 'public/js').vue()`
-    - `backend$ npm i vue vuex vue-router tailwindcss @stripe/stripe-js`
-    - if ERR with `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
+    - `backend$ npm i vue vuex vue-router @stripe/stripe-js`
+    - `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
     - `npm i`
     - `npm run watch`
+    > refer: view list sample vue=3 & vuex+vue-router=4 "https://codesandbox.io/s/vue-3-vuex-4-vue-router-nvebt?file=/src/main.js"
 
 ## connect DB
 ![DB](screenshot/DB.png)
