@@ -7,7 +7,7 @@
 [![Report an issue](https://img.shields.io/badge/Support-Issues-green)](https://github.com/tquangdo/vue2-laravel8-stripe-shopping-cart/issues/new)
 
 ## reference
-![youtube](https://www.youtube.com/watch?v=gvnxd1xne7Q)
+[youtube](https://www.youtube.com/watch?v=gvnxd1xne7Q)
 
 ## check versions
 1. PHP: `[php] # php -v`
@@ -42,6 +42,7 @@
         - `php artisan make:migration create_order<category>_product_table --table=order<category>_product`
         - => NOT create table yet! (just create empty file `xxx_create_order<category>_product_table.php`)
         - copy paste content into `xxx_table.php` (do NOT forget `xxx_create_users_table.php`) > `php artisan migrate(:refresh)`
+        ---
         ![category_product](screenshot/category_product.png)
         > ":refresh" will delete all fake data => need run again `php artisan db:seed`!!!
         ---
@@ -108,7 +109,7 @@
     - `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
     - `npm i`
     - `npm run watch`
-    > refer: view list sample vue=3 & vuex+vue-router=4 "https://codesandbox.io/s/vue-3-vuex-4-vue-router-nvebt?file=/src/main.js"
+    > refer: view list sample vue=3 & vuex+vue-router=4: "https://codesandbox.io/s/vue-3-vuex-4-vue-router-nvebt?file=/src/main.js"
 
 ## connect DB
 ![DB](screenshot/DB.png)
