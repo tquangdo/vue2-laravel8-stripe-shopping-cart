@@ -1,19 +1,33 @@
 require('./bootstrap')
 
+// ~~~~~ Vue 2
 import Vue from "vue";
-
 import Vuex from "vuex";
 Vue.use(Vuex);
-
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
-
 const router = new VueRouter({
     mode: 'history',
     routes: require('./routes.js')
 });
+// ~~~~~ Vue 3
+// import { createApp } from "vue";
 
+// import { createStore } from "vuex";
+
+// import { createRouter, createWebHistory } from "vue-router";
+
+// const routerHistory = createWebHistory();
+// const router = createRouter({
+//     history: routerHistory,
+//     routes: require('./routes.js')
+// });
+
+
+// ~~~~~ Vue 2
 const store = new Vuex.Store({
+    // ~~~~~ Vue 3
+    // const store = createStore({
     state: {
         state_products: [],
         state_cart: [],
@@ -58,6 +72,7 @@ const store = new Vuex.Store({
     }
 });
 
+// ~~~~~ Vue 2
 const app = new Vue({
     router,
     store,
@@ -68,3 +83,11 @@ const app = new Vue({
             .catch((error) => console.error(error));
     }
 });
+// ~~~~~ Vue 3
+// createApp({
+//     mounted() {
+//         store.dispatch('onGetProducts')
+//             .then(_ => { })
+//             .catch((error) => console.error(error));
+//     }
+// }).use(store).use(router).mount("#app")

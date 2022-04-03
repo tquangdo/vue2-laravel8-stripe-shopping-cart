@@ -5,28 +5,69 @@
         <thead>
           <tr>
             <th
-              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200 rounded-tl rounded-bl"
+              class="
+                px-4
+                py-3
+                title-font
+                tracking-wider
+                font-medium
+                text-gray-900 text-sm
+                bg-gray-200
+                rounded-tl rounded-bl
+              "
             >
               Item
             </th>
             <th
-              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+              class="
+                px-4
+                py-3
+                title-font
+                tracking-wider
+                font-medium
+                text-gray-900 text-sm
+                bg-gray-200
+              "
             >
               Quantity
             </th>
             <th
-              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+              class="
+                px-4
+                py-3
+                title-font
+                tracking-wider
+                font-medium
+                text-gray-900 text-sm
+                bg-gray-200
+              "
             >
               Price
             </th>
 
             <th
-              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+              class="
+                px-4
+                py-3
+                title-font
+                tracking-wider
+                font-medium
+                text-gray-900 text-sm
+                bg-gray-200
+              "
             >
               Subtotal Price
             </th>
             <th
-              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-200"
+              class="
+                px-4
+                py-3
+                title-font
+                tracking-wider
+                font-medium
+                text-gray-900 text-sm
+                bg-gray-200
+              "
             >
               Actions
             </th>
@@ -40,7 +81,18 @@
             <td class="p-4" v-text="onCartLineTotal(item)"></td>
             <td class="w-10 text-right">
               <button
-                class="flex ml-auto text-sm text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                class="
+                  flex
+                  ml-auto
+                  text-sm text-white
+                  bg-indigo-500
+                  border-0
+                  py-2
+                  px-6
+                  focus:outline-none
+                  hover:bg-indigo-600
+                  rounded
+                "
                 @click="$store.commit('removeFromCart', index)"
               >
                 Remove
@@ -68,7 +120,22 @@
               type="text"
               id="first_name"
               name="first_name"
-              class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              class="
+                w-full
+                bg-gray-100
+                rounded
+                border border-gray-300
+                focus:border-indigo-500
+                text-base
+                outline-none
+                text-gray-700
+                py-1
+                px-3
+                leading-8
+                transition-colors
+                duration-200
+                ease-in-out
+              "
               v-model="v_customer.first_name"
               :disabled="v_paymentProcessing"
             />
@@ -83,7 +150,22 @@
               type="text"
               id="last_name"
               name="last_name"
-              class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              class="
+                w-full
+                bg-gray-100
+                rounded
+                border border-gray-300
+                focus:border-indigo-500
+                text-base
+                outline-none
+                text-gray-700
+                py-1
+                px-3
+                leading-8
+                transition-colors
+                duration-200
+                ease-in-out
+              "
               v-model="v_customer.last_name"
               :disabled="v_paymentProcessing"
             />
@@ -98,7 +180,22 @@
               type="email"
               id="email"
               name="email"
-              class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              class="
+                w-full
+                bg-gray-100
+                rounded
+                border border-gray-300
+                focus:border-indigo-500
+                text-base
+                outline-none
+                text-gray-700
+                py-1
+                px-3
+                leading-8
+                transition-colors
+                duration-200
+                ease-in-out
+              "
               v-model="v_customer.email"
               :disabled="v_paymentProcessing"
             />
@@ -115,7 +212,22 @@
               type="text"
               id="address"
               name="address"
-              class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              class="
+                w-full
+                bg-gray-100
+                rounded
+                border border-gray-300
+                focus:border-indigo-500
+                text-base
+                outline-none
+                text-gray-700
+                py-1
+                px-3
+                leading-8
+                transition-colors
+                duration-200
+                ease-in-out
+              "
               v-model="v_customer.address"
               :disabled="v_paymentProcessing"
             />
@@ -130,7 +242,22 @@
               type="text"
               id="city"
               name="city"
-              class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              class="
+                w-full
+                bg-gray-100
+                rounded
+                border border-gray-300
+                focus:border-indigo-500
+                text-base
+                outline-none
+                text-gray-700
+                py-1
+                px-3
+                leading-8
+                transition-colors
+                duration-200
+                ease-in-out
+              "
               v-model="v_customer.city"
               :disabled="v_paymentProcessing"
             />
@@ -145,7 +272,22 @@
               type="email"
               id="state"
               name="state"
-              class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              class="
+                w-full
+                bg-gray-100
+                rounded
+                border border-gray-300
+                focus:border-indigo-500
+                text-base
+                outline-none
+                text-gray-700
+                py-1
+                px-3
+                leading-8
+                transition-colors
+                duration-200
+                ease-in-out
+              "
               v-model="v_customer.state"
               :disabled="v_paymentProcessing"
             />
@@ -160,7 +302,22 @@
               type="email"
               id="zip_code"
               name="zip_code"
-              class="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              class="
+                w-full
+                bg-gray-100
+                rounded
+                border border-gray-300
+                focus:border-indigo-500
+                text-base
+                outline-none
+                text-gray-700
+                py-1
+                px-3
+                leading-8
+                transition-colors
+                duration-200
+                ease-in-out
+              "
               v-model="v_customer.zip_code"
               :disabled="v_paymentProcessing"
             />
@@ -179,7 +336,19 @@
       </div>
       <div class="p-2 w-full">
         <button
-          class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+          class="
+            flex
+            mx-auto
+            text-white
+            bg-indigo-500
+            border-0
+            py-2
+            px-8
+            focus:outline-none
+            hover:bg-indigo-600
+            rounded
+            text-lg
+          "
           @click="onProcessPayment"
           :disabled="v_paymentProcessing"
           v-text="v_paymentProcessing ? 'Processing' : 'Pay Now'"
@@ -213,8 +382,7 @@ export default {
     // Valid Elements are: card, cardNumber, cardExpiry, cardCvc, postalCode, paymentRequestButton, iban, idealBank, p24Bank, auBankAccount, fpxBank, afterpayClearpayMessage
     this.v_cardElement = elements.create("card", {
       classes: {
-        base:
-          "bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out",
+        base: "bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 p-3 leading-8 transition-colors duration-200 ease-in-out",
       },
     });
     this.v_cardElement.mount("#card-element");
@@ -248,7 +416,8 @@ export default {
       );
       if (error) {
         this.v_paymentProcessing = false;
-        alert("payment by Stripe ERR!!! " + error);
+        console.log("error: ", error);
+        alert("payment by Stripe ERR!!! " + JSON.stringify(error));
       } else {
         this.v_customer.payment_method_id = paymentMethod.id;
         this.v_customer.amount = this.comp_cart.reduce(
@@ -266,7 +435,8 @@ export default {
           })
           .catch((error) => {
             this.v_paymentProcessing = false;
-            alert("payment by Stripe ERR!!! " + error);
+            console.log("error: ", error);
+            alert("payment by Stripe ERR!!! " + JSON.stringify(error));
           });
       }
     },

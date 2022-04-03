@@ -6,6 +6,9 @@
 ![Forks](https://img.shields.io/github/forks/tquangdo/vue2-laravel8-stripe-shopping-cart?color=f05340)
 [![Report an issue](https://img.shields.io/badge/Support-Issues-green)](https://github.com/tquangdo/vue2-laravel8-stripe-shopping-cart/issues/new)
 
+## reference
+![youtube](https://www.youtube.com/watch?v=gvnxd1xne7Q)
+
 ## check versions
 1. PHP: `[php] # php -v`
 >(PHP info: `[php] # php -m`)
@@ -18,18 +21,17 @@
     - `docker-compose exec php bash`
     - `[php] $ composer install`
     - `[php] $ cp .env.example .env`
+    - fill `STRIPE_KEY` & `STRIPE_SECRET` in `.env`
+    ![stripe_key](screenshot/stripe_key.png)
     - `[php] $ php artisan key:generate`
 1. ### FE
     - `npm i`
     - `npm run watch`
-    - access on browser: `http://localhost:10080`
+    - access on browser: `http://localhost:10080` (port `10080` in `docker-compose.yml`)
     ![demo](screenshot/demo.png)
-    > - note: In case create new proj
-    > - `backend$ npm i vue vuex vue-router tailwindcss @stripe/stripe-js`
-    > - if ERR with `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
 
 ## localdeploy (create new proj)
-1. ### MVC
+1. ### BE MVC
     1. #### model
         - `php artisan make:model Product<Category><Order> -m`
         - => create products<categories><orders> table
@@ -39,8 +41,9 @@
     1. #### table "order_product" & "category_product"
         - `php artisan make:migration create_order<category>_product_table --table=order<category>_product`
         - => NOT create table yet! (just create empty file `xxx_create_order<category>_product_table.php`)
-        - copy paste content into `xxx_table.php` > `php artisan migrate(:refresh)`
+        - copy paste content into `xxx_table.php` (do NOT forget `xxx_create_users_table.php`) > `php artisan migrate(:refresh)`
         ![category_product](screenshot/category_product.png)
+        > ":refresh" will delete all fake data => need run again `php artisan db:seed`!!!
         ---
         ![order_product](screenshot/order_product.png)
     1. #### test to create 1 random user (NOT insert into table yet!)
@@ -61,7 +64,7 @@
     1. #### factory
         - `php artisan make:factory Product<Category><Order>Factory --model=Product<Category><Order> -m`
         - => create `database/factories/Product<Category><Order>Factory.php`
-        - copy paste content into `*Factory.php`
+        - copy paste content into `*Factory.php` (do NOT forget `UserFactory.php`)
     1. #### seeder
         - `php artisan make:seeder User<Product>Seeder`
         - copy paste content into `backend/database/seeders/DatabaseSeeder.php` (include `User<Product>Seeder`)
@@ -87,13 +90,24 @@
     1. #### controller
         - `php artisan make:controller Api/Product<User>Controller`
     1. #### routes
-        - copy paste content into `backend/routes/api.php`
+        - copy paste content into `backend/routes/api.php & web.php`
 1. ### test API
-    - `php artisan server`
+    - `php artisan serve`
     1. #### GET
         - access `localhost:8000/api/products` on browser => will see JSON
     1. #### POST
+        - `localhost:8000/api/purchase`
         - click "Pay Now" (stripe) in `backend/app/Http/Controllers/Api/UserController.php > routeApiPurchase()` => NO need to take time to test API!!!
+1. ### FE
+    - copy paste content into `backend/resources`
+    - copy paste content into `backend/webpack.mix.js`
+    > ⚠️⚠️⚠️ IMPORTANT ⚠️⚠️⚠️!!!
+    > - laravel-mix ver 5: repo
+    > - laravel-mix ver 6: `mix.js('resources/js/app.js', 'public/js')` -> `mix.js('resources/js/app.js', 'public/js').vue()`
+    - `backend$ npm i vue vuex vue-router tailwindcss @stripe/stripe-js`
+    - if ERR with `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
+    - `npm i`
+    - `npm run watch`
 
 ## connect DB
 ![DB](screenshot/DB.png)
