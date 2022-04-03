@@ -118,7 +118,8 @@
 ## connect DB
 ![DB](screenshot/DB.png)
 1. ### in CLI
-    - `docker-compose exec db bash -c 'mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'`
+    - clone this repo: `docker-compose exec db bash -c 'mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'`
+    - create new proj: `docker exec -it cont-mysql mysql -u root -p`
     ```shell
     mysql> show tables;
     =>
