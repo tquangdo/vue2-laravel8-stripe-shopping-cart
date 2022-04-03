@@ -94,6 +94,7 @@
     1. #### routes
         - copy paste content into `backend/routes/api.php & web.php`
 1. ### test API
+    - fill `STRIPE_KEY` & `STRIPE_SECRET` & `MIX_CASHIER_CURRENCY(_LOCALE)` in `.env`
     - `php artisan serve`
     1. #### GET
         - access `localhost:8000/api/products` on browser => will see JSON
