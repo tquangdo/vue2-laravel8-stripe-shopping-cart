@@ -37,14 +37,14 @@
         - => create products<categories><orders> table
         - copy paste content into all Model/*.php (include `backend/app/Models/User.php`)
         - `composer require laravel/cashier` (stripe)
-        > https://laravel.com/docs/8.x/billing
+        > refer: https://laravel.com/docs/8.x/billing
     1. #### table "order_product" & "category_product"
         - `php artisan make:migration create_order<category>_product_table --table=order<category>_product`
         - => NOT create table yet! (just create empty file `xxx_create_order<category>_product_table.php`)
         - copy paste content into `xxx_table.php` (do NOT forget `xxx_create_users_table.php`) > `php artisan migrate(:refresh)`
+        > ":refresh" will delete all fake data => need run again `php artisan db:seed`!!!
         ---
         ![category_product](screenshot/category_product.png)
-        > ":refresh" will delete all fake data => need run again `php artisan db:seed`!!!
         ---
         ![order_product](screenshot/order_product.png)
     1. #### test to create 1 random user (NOT insert into table yet!)
@@ -90,6 +90,7 @@
         - `>>> App\Models\Product::with('categories')->get();`
     1. #### controller
         - `php artisan make:controller Api/Product<User>Controller`
+        - copy paste content into `*Controller.php`
     1. #### routes
         - copy paste content into `backend/routes/api.php & web.php`
 1. ### test API
