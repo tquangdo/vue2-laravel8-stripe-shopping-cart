@@ -44,7 +44,10 @@
     1. #### table "order_product" & "category_product"
         - `php artisan make:migration create_order<category>_product_table --table=order<category>_product`
         - => NOT create table yet! (just create empty file `xxx_create_order<category>_product_table.php`)
-        - copy paste content into `xxx_table.php` (do NOT forget `xxx_create_users_table.php`) > `php artisan migrate(:refresh)`
+        - copy paste content into `xxx_table.php`
+        > ⚠️⚠️⚠️ IMPORTANT ⚠️⚠️⚠️!!!
+        - do NOT forget `xxx_create_users_table.php`
+        - `php artisan migrate(:refresh)`
         > ":refresh" will delete all fake data => need run again `php artisan db:seed`!!!
         ---
         ![category_product](screenshot/category_product.png)
@@ -68,7 +71,9 @@
     1. #### factory
         - `php artisan make:factory Product<Category><Order>Factory --model=Product<Category><Order> -m`
         - => create `database/factories/Product<Category><Order>Factory.php`
-        - copy paste content into `*Factory.php` (do NOT forget `UserFactory.php`)
+        - copy paste content into `*Factory.php`
+        > ⚠️⚠️⚠️ IMPORTANT ⚠️⚠️⚠️!!!
+        - do NOT forget `UserFactory.php`
     1. #### seeder
         - `php artisan make:seeder User<Product>Seeder`
         - copy paste content into `backend/database/seeders/DatabaseSeeder.php` (include `User<Product>Seeder`)
@@ -110,7 +115,9 @@
     > - laravel-mix ver 5: repo
     > - laravel-mix ver 6: `mix.js('resources/js/app.js', 'public/js')` -> `mix.js('resources/js/app.js', 'public/js').vue()`
     - `backend$ npm i vue vuex vue-router @stripe/stripe-js`
-    - `tailwindcss`: edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
+    > ⚠️⚠️⚠️ IMPORTANT ⚠️⚠️⚠️!!!
+    - can NOT `npm i tailwindcss` due to ERR!!!
+    - MUST edit `backend/package.json >  "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",`
     - `npm i`
     - `npm run watch`
     > refer: view list sample vue=3 & vuex+vue-router=4: "https://codesandbox.io/s/vue-3-vuex-4-vue-router-nvebt?file=/src/main.js"
