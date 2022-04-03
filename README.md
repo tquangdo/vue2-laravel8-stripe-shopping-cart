@@ -95,7 +95,7 @@
         - `php artisan make:controller Api/Product<User>Controller`
         - copy paste content into `*Controller.php`
     1. #### routes
-        - copy paste content into `backend/routes/api.php & web.php`
+        - copy paste content into `routes/api.php & web.php`
 1. ### test API
     - `php artisan serve`
     1. #### GET
